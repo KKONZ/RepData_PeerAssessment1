@@ -6,7 +6,7 @@ Date: *Sunday, February 7, 2016*
 
 Data 
 ----
-The raw data for this report can be downloaded from this address <https://d396qusza40orc.cloudfront.net/repdata%2Fdata%2Factivity.zip>. Use the script below to download data.
+The raw data for this report can be downloaded from this address <https://d396qusza40orc.cloudfront.net/repdata%2Fdata%2Factivity.zip>. 
 
 
 ## Loading and preprocessing the data
