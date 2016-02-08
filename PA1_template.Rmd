@@ -32,7 +32,7 @@ plot(MyData$date, MyData$steps, type = "h", main = " Total Number of Daily Steps
 avgDailyStps <- sapply(split(MyData$steps, MyData$interval), mean, na.rm=TRUE)
 ```
 
-```{r}
+```{r, fig.width= 15}
  plot(avgDailyStps, type = "l", main = "Average Number of Steps", ylab = "Number of Steps", xlab = "5 min increments")
 ```
 
@@ -74,7 +74,7 @@ weekend <- gsub("FALSE", "weekday", weekend)
 procdata <- cbind(procdata, weekend)
 ```
 
-```{r}
+```{r, fig.width= 15}
 library(lattice)
 subd <- subset(procdata, procdata$weekend == "weekday")
 sube <- subset(procdata, procdata$weekend == "weekend")
