@@ -1,3 +1,4 @@
+
 Activity Monitoring
 ===================
 
@@ -28,7 +29,7 @@ MyData$date <-strptime(MyData$date, "%Y-%m-%d")
 plot(MyData$date, MyData$steps, type = "h", main = " Total Number of Daily Steps", ylab = "Daily Number of Steps of Person", xlab = "October and November, 2012")
 ```
 
-![plot of chunk unnamed-chunk-3](figure/unnamed-chunk-3-1.png)
+![](PA1_template_files/figure-html/unnamed-chunk-3-1.png)
 
 
 ## What is the average daily activity pattern?
@@ -43,7 +44,7 @@ avgDailyStps <- sapply(split(MyData$steps, MyData$interval), mean, na.rm=TRUE)
  plot(avgDailyStps, type = "l", main = "Average Number of Steps", ylab = "Number of Steps", xlab = "5 min increments")
 ```
 
-![plot of chunk unnamed-chunk-5](figure/unnamed-chunk-5-1.png)
+![](PA1_template_files/figure-html/unnamed-chunk-5-1.png)
 
 ## Imputing missing values
 
@@ -73,7 +74,7 @@ Here is mean total number of steps taken per day with the missing values imputte
 plot(procdata$date, procdata$steps, type = "h", main = "Number Steps Taken Daily", ylab = "Number of steps", xlab = "October and November, 2012")
 ```
 
-![plot of chunk unnamed-chunk-8](figure/unnamed-chunk-8-1.png)
+![](PA1_template_files/figure-html/unnamed-chunk-8-1.png)
 
 ```r
 meanproc <- mean(procdata$steps)
@@ -116,4 +117,4 @@ xyplot(steps ~ Interval | time, data = data, type = "l",
        layout = c(1, 2), ylab = "Number of steps")
 ```
 
-![plot of chunk unnamed-chunk-10](figure/unnamed-chunk-10-1.png)
+![](PA1_template_files/figure-html/unnamed-chunk-10-1.png)
