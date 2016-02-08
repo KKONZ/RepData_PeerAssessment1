@@ -25,13 +25,14 @@ MyData$date <-strptime(MyData$date, "%Y-%m-%d")
 
 ```{r}
 library(plyr)
-m <-  ddply(MyData, c("date"), summarise, steps = mean(steps, na.rm=T))
-
+mean <-  ddply(MyData, c("date"), summarise, steps = mean(steps, na.rm=T))
+median <-  ddply(MyData, c("date"), summarise, steps = median(steps, na.rm=T))
 ```
 
 ```{r, fig.width= 15}
-plot(m$date, m$steps, type = "h", main = "Mean Total Number of Daily Steps", ylab = "Daily Number of Steps of Person", xlab = "October and November, 2012", col="darkblue", lwd=5)
-m
+plot(MyData$date, MyData$steps, type = "h", main = "Mean Total Number of Daily Steps", ylab = "Daily Number of Steps of Person", xlab = "October and November, 2012", col="darkblue", lwd=5)
+mean
+median
 ```
 
 ## What is the average daily activity pattern?
@@ -43,6 +44,13 @@ avgDailyStps <- sapply(split(MyData$steps, MyData$interval), mean, na.rm=TRUE)
 
 ```{r, fig.width= 15}
  plot(unique(MyData$interval), avgDailyStps, type = "l",  main = "Average Number of Steps", ylab = "Number of Steps", xlab = "5 min increments", col="darkblue")
+
+t <- ddply(MyData, "interval", summarize, steps = mean(steps, na.rm=T))
+
+max<- t[which(t$steps == max(t$steps)),1]
+abline(v = max, col = "red", lwd = 3)
+
+
 ```
 
 
@@ -63,14 +71,13 @@ for (i in leng) {
 ```{r}
 procdata <- MyData
 procdata$steps <- nv
-mprocdata <-  ddply(procdata, c("date"), summarise, steps = mean(steps))
 ```
 
 Here is mean total number of steps taken per day with the missing values imputted.
 
 ```{r, fig.width= 15}
-plot(mprocdata$date, mprocdata$steps, type = "h",main = "Mean Total Number Steps Taken Daily", ylab = "Number of steps", xlab = "October and November, 2012", col="darkblue", lwd=5)
-mprocdata
+plot(procdata$date, procdata$steps, type = "h",main = "Mean Total Number Steps Taken Daily", ylab = "Number of steps", xlab = "October and November, 2012", col="darkblue", lwd=5)
+
 ```
 
 ## Are there differences in activity patterns between weekdays and weekends?
