@@ -196,6 +196,15 @@ abline(v = max, col = "red", lwd = 3)
 
 ![plot of chunk unnamed-chunk-6](figure/unnamed-chunk-6-1.png)
 
+Max Interval:
+
+```r
+max
+```
+
+```
+## [1] 835
+```
 
 ## Imputing missing values
 
@@ -225,7 +234,7 @@ Here is mean total number of steps taken per day with the missing values imputte
 plot(procdata$date, procdata$steps, type = "h",main = "Total Number Steps Taken Daily", ylab = "Number of steps", xlab = "October and November, 2012", col="darkblue", lwd=5)
 ```
 
-![plot of chunk unnamed-chunk-9](figure/unnamed-chunk-9-1.png)
+![plot of chunk unnamed-chunk-10](figure/unnamed-chunk-10-1.png)
 
 ## Are there differences in activity patterns between weekdays and weekends?
 
@@ -263,4 +272,4 @@ xyplot(steps ~ Interval | time, data = data, type = "l",
        layout = c(1, 2), ylab = "Number of steps")
 ```
 
-![plot of chunk unnamed-chunk-11](figure/unnamed-chunk-11-1.png)
+![plot of chunk unnamed-chunk-12](figure/unnamed-chunk-12-1.png)

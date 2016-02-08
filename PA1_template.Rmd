@@ -50,9 +50,12 @@ t <- ddply(MyData, "interval", summarize, steps = mean(steps, na.rm=T))
 max<- t[which(t$steps == max(t$steps)),1]
 abline(v = max, col = "red", lwd = 3)
 
-
 ```
 
+Max Interval:
+```{r}
+max
+```
 
 ## Imputing missing values
 
