@@ -34,7 +34,7 @@ median <-  ddply(MyData, c("date"), summarise, steps = median(steps, na.rm=T))
 
 
 ```r
-plot(MyData$date, MyData$steps, type = "h", main = "Mean Total Number of Daily Steps", ylab = "Daily Number of Steps of Person", xlab = "October and November, 2012", col="darkblue", lwd=5)
+plot(MyData$date, MyData$steps, type = "h", main = "Total Number of Daily Steps", ylab = "Daily Number of Steps of Person", xlab = "October and November, 2012", col="darkblue", lwd=5)
 ```
 
 ![plot of chunk unnamed-chunk-4](figure/unnamed-chunk-4-1.png)
@@ -222,7 +222,7 @@ Here is mean total number of steps taken per day with the missing values imputte
 
 
 ```r
-plot(procdata$date, procdata$steps, type = "h",main = "Mean Total Number Steps Taken Daily", ylab = "Number of steps", xlab = "October and November, 2012", col="darkblue", lwd=5)
+plot(procdata$date, procdata$steps, type = "h",main = "Total Number Steps Taken Daily", ylab = "Number of steps", xlab = "October and November, 2012", col="darkblue", lwd=5)
 ```
 
 ![plot of chunk unnamed-chunk-9](figure/unnamed-chunk-9-1.png)
