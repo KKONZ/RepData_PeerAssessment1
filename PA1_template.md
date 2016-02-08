@@ -11,34 +11,44 @@ The raw data for this report can be downloaded from this address <https://d396qu
 
 ## Loading and preprocessing the data
 
-```{r}
+
+```r
 MyData <- read.csv(file = "activity.csv", stringsAsFactors=FALSE, na.strings="NA")
 ```
 
-```{r}
+
+```r
 MyData$date <-strptime(MyData$date, "%Y-%m-%d")
 ```
 
 ## What is mean total number of steps taken per day?
 
-```{r, fig.width= 15}
+
+```r
 plot(MyData$date, MyData$steps, type = "h", main = " Total Number of Daily Steps", ylab = "Daily Number of Steps of Person", xlab = "October and November, 2012")
 ```
+
+![plot of chunk unnamed-chunk-3](figure/unnamed-chunk-3-1.png)
 
 
 ## What is the average daily activity pattern?
 
-```{r}
+
+```r
 avgDailyStps <- sapply(split(MyData$steps, MyData$interval), mean, na.rm=TRUE)
 ```
 
-```{r}
+
+```r
  plot(avgDailyStps, type = "l", main = "Average Number of Steps", ylab = "Number of Steps", xlab = "5 min increments")
 ```
 
+![plot of chunk unnamed-chunk-5](figure/unnamed-chunk-5-1.png)
+
 ## Imputing missing values
 
-```{r}
+
+```r
 trows <- nrow(MyData)
 cAvgDailyStps <- rep(avgDailyStps, 61) 
 nv <- vector()
@@ -50,22 +60,30 @@ for (i in leng) {
 ```
 
 
-```{r}
+
+```r
 procdata <- MyData
 procdata$steps <- nv
 ```
 
 Here is mean total number of steps taken per day with the missing values imputted.
 
-```{r}
+
+```r
 plot(procdata$date, procdata$steps, type = "h", main = "Number Steps Taken Daily", ylab = "Number of steps", xlab = "October and November, 2012")
+```
+
+![plot of chunk unnamed-chunk-8](figure/unnamed-chunk-8-1.png)
+
+```r
 meanproc <- mean(procdata$steps)
 medianproc <- median(procdata$steps)
 ```
 
 ## Are there differences in activity patterns between weekdays and weekends?
 
-```{r}
+
+```r
 library("timeDate")
 time <- procdata$date
 weekend <- sapply(as.Date(time), isWeekend)
@@ -74,7 +92,8 @@ weekend <- gsub("FALSE", "weekday", weekend)
 procdata <- cbind(procdata, weekend)
 ```
 
-```{r}
+
+```r
 library(lattice)
 subd <- subset(procdata, procdata$weekend == "weekday")
 sube <- subset(procdata, procdata$weekend == "weekend")
@@ -96,3 +115,5 @@ data <- rbind(wd, we)
 xyplot(steps ~ Interval | time, data = data, type = "l", 
        layout = c(1, 2), ylab = "Number of steps")
 ```
+
+![plot of chunk unnamed-chunk-10](figure/unnamed-chunk-10-1.png)
