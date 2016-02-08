@@ -25,12 +25,12 @@ MyData$date <-strptime(MyData$date, "%Y-%m-%d")
 
 ```{r}
 library(plyr)
-m <-  ddply(MyData, c("date"), summarise, mean = mean(steps, na.rm=T))
+m <-  ddply(MyData, c("date"), summarise, steps = mean(steps, na.rm=T))
 
 ```
 
 ```{r, fig.width= 15}
-plot(m$date, m$mean, type = "h", main = " Total Number of Daily Steps", ylab = "Daily Number of Steps of Person", xlab = "October and November, 2012", col="darkblue", lwd=5)
+plot(m$date, m$steps, type = "h", main = "Mean Total Number of Daily Steps", ylab = "Daily Number of Steps of Person", xlab = "October and November, 2012", col="darkblue", lwd=5)
 m
 ```
 
@@ -63,13 +63,14 @@ for (i in leng) {
 ```{r}
 procdata <- MyData
 procdata$steps <- nv
-mprocdata <-  ddply(procdata, c("date"), summarise, mean = mean(steps))
+mprocdata <-  ddply(procdata, c("date"), summarise, steps = mean(steps))
 ```
 
 Here is mean total number of steps taken per day with the missing values imputted.
 
 ```{r, fig.width= 15}
-plot(mprocdata$date, mprocdata$mean, type = "h",main = "Number Steps Taken Daily", ylab = "Number of steps", xlab = "October and November, 2012", col="darkblue", lwd=5)
+plot(mprocdata$date, mprocdata$steps, type = "h",main = "Mean Total Number Steps Taken Daily", ylab = "Number of steps", xlab = "October and November, 2012", col="darkblue", lwd=5)
+mprocdata
 ```
 
 ## Are there differences in activity patterns between weekdays and weekends?
