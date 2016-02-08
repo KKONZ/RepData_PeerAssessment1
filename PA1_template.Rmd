@@ -22,7 +22,7 @@ MyData$date <-strptime(MyData$date, "%Y-%m-%d")
 ## What is mean total number of steps taken per day?
 
 ```{r, fig.width= 15}
-plot(MyData$date, MyData$steps, type = "h", main = " Total Number of Daily Steps", ylab = "Daily Number of Steps of Person", xlab = "October and November, 2012")
+plot(MyData$date, MyData$steps, type = "h", main = " Total Number of Daily Steps", ylab = "Daily Number of Steps of Person", xlab = "October and November, 2012", col="darkblue", lwd=5)
 ```
 
 
@@ -30,11 +30,13 @@ plot(MyData$date, MyData$steps, type = "h", main = " Total Number of Daily Steps
 
 ```{r}
 avgDailyStps <- sapply(split(MyData$steps, MyData$interval), mean, na.rm=TRUE)
+
 ```
 
 ```{r, fig.width= 15}
- plot(avgDailyStps, type = "l", main = "Average Number of Steps", ylab = "Number of Steps", xlab = "5 min increments")
+ plot(unique(MyData$interval), avgDailyStps, type = "l", main = "Average Number of Steps", ylab = "Number of Steps", xlab = "5 min increments", col="darkblue")
 ```
+
 
 ## Imputing missing values
 
@@ -58,9 +60,7 @@ procdata$steps <- nv
 Here is mean total number of steps taken per day with the missing values imputted.
 
 ```{r, fig.width= 15}
-plot(procdata$date, procdata$steps, type = "h", main = "Number Steps Taken Daily", ylab = "Number of steps", xlab = "October and November, 2012")
-meanproc <- mean(procdata$steps)
-medianproc <- median(procdata$steps)
+plot(procdata$date, procdata$steps, type = "h", main = "Number Steps Taken Daily", ylab = "Number of steps", xlab = "October and November, 2012", col="darkblue", lwd=5)
 ```
 
 ## Are there differences in activity patterns between weekdays and weekends?
@@ -74,7 +74,7 @@ weekend <- gsub("FALSE", "weekday", weekend)
 procdata <- cbind(procdata, weekend)
 ```
 
-```{r, fig.width= 15}
+```{r, fig.height=9, fig.width= 15}
 library(lattice)
 subd <- subset(procdata, procdata$weekend == "weekday")
 sube <- subset(procdata, procdata$weekend == "weekend")

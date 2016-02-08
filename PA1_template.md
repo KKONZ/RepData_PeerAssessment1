@@ -25,7 +25,7 @@ MyData$date <-strptime(MyData$date, "%Y-%m-%d")
 
 
 ```r
-plot(MyData$date, MyData$steps, type = "h", main = " Total Number of Daily Steps", ylab = "Daily Number of Steps of Person", xlab = "October and November, 2012")
+plot(MyData$date, MyData$steps, type = "h", main = " Total Number of Daily Steps", ylab = "Daily Number of Steps of Person", xlab = "October and November, 2012", col="darkblue", lwd=5)
 ```
 
 ![plot of chunk unnamed-chunk-3](figure/unnamed-chunk-3-1.png)
@@ -40,10 +40,11 @@ avgDailyStps <- sapply(split(MyData$steps, MyData$interval), mean, na.rm=TRUE)
 
 
 ```r
- plot(avgDailyStps, type = "l", main = "Average Number of Steps", ylab = "Number of Steps", xlab = "5 min increments")
+ plot(unique(MyData$interval), avgDailyStps, type = "l", main = "Average Number of Steps", ylab = "Number of Steps", xlab = "5 min increments", col="darkblue")
 ```
 
 ![plot of chunk unnamed-chunk-5](figure/unnamed-chunk-5-1.png)
+
 
 ## Imputing missing values
 
@@ -70,15 +71,10 @@ Here is mean total number of steps taken per day with the missing values imputte
 
 
 ```r
-plot(procdata$date, procdata$steps, type = "h", main = "Number Steps Taken Daily", ylab = "Number of steps", xlab = "October and November, 2012")
+plot(procdata$date, procdata$steps, type = "h", main = "Number Steps Taken Daily", ylab = "Number of steps", xlab = "October and November, 2012", col="darkblue", lwd=5)
 ```
 
 ![plot of chunk unnamed-chunk-8](figure/unnamed-chunk-8-1.png)
-
-```r
-meanproc <- mean(procdata$steps)
-medianproc <- median(procdata$steps)
-```
 
 ## Are there differences in activity patterns between weekdays and weekends?
 
